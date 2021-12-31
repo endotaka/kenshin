@@ -1,0 +1,45 @@
+---
+title: "健康診断ダッシュボード"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+```
+
+```{r data, include=FALSE}
+data <- read.csv("open_tggates_biochemistry.csv")
+data$EXP_ID <- as.factor(data$EXP_ID)
+Numeric.Variables = c("GLC.mg.dL.", "CRE.mg.dL.", "TG.mg.dL.")
+```
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### Glucose
+```{r}
+ggplot(data = data, aes(x=data$GLC.mg.dL.))+
+  geom_histogram()
+```
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### Cre
+
+```{r}
+ggplot(data = data, aes(x=data$CRE.mg.dL.))+
+  geom_histogram()
+```
+
+### TG
+
+```{r}
+ggplot(data = data, aes(x=data$TG.mg.dL.))+
+  geom_histogram()
+```
+
